@@ -26,4 +26,14 @@ cameraTrigger.onclick = function() {
     cameraOutput.classList.add("taken");
 };
 
+function stopStreamedVideo(cameraView) {
+    const stream = cameraView.srcObject;
+    const tracks = stream.getTracks();
+
+    tracks.forEach(function(track) {
+        track.stop();
+    });
+    cameraView.srcObject = null;
+}
+
 window.addEventListener("load", cameraStart, false);
